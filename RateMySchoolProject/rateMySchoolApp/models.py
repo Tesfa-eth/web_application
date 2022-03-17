@@ -27,3 +27,12 @@ class Post(models.Model):
 
     def __str__(self):
         return self.firstName + ',' +  self.postcontent # what it shows us on the admin panel.
+
+class Universities(models.Model):
+    name = models.CharField(max_length=100)
+    #date_created = models.DateTimeField(auto_now_add=True)
+    country_code = models.IntegerField() # will be using ISO 3166-1 country codes
+    overall_rating = models.IntegerField()
+
+    def __str__(self) -> str:
+        return self.name
