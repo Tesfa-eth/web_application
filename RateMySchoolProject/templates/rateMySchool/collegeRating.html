@@ -71,7 +71,7 @@
               
       <div class="row pt-2 mb-2">
         <div class="col-md-6">
-          <div style="color: white;display:inline;font-weight:bold;">Second person</div> <b style="color: #E5E4E2;">(platinium)</b>  <br> <small>3/6/2022</small> <!--date needs to be small in size-->
+          <div style="color: white;display:inline;font-weight:bold;">First Last</div> <b style="color: #E5E4E2;">(platinium)</b>  <br> <small>3/6/2022</small> <!--date needs to be small in size-->
         </div>
         
         <div class="col-md-6">
@@ -97,6 +97,39 @@
       </div>
 
     </div>
+
+    {%for post in posts%}
+    <div class="border p-3 mt-3 mb-2" style="background-color:#9ea4e0;">
+              
+      <div class="row pt-2 mb-2">
+        <div class="col-md-6">
+          <div style="color: white;display:inline;font-weight:bold;">First Last</div> <b style="color: #E5E4E2;">(badge)</b>  <br> <small>{{post.date_created}}</small> <!--date needs to be small in size-->
+        </div>
+        
+        <div class="col-md-6">
+          <b style="color: #333B84;">Rating: </b>individual rating goes here
+        </div>
+      </div>
+
+      {{post.postcontent}}
+      <!--bottom of individual rating. Consists upvote and downvote-->
+      <div class="row pt-3">
+        <div class="col-md-4">
+          
+        </div>
+        <div class="col-md-4">
+          <!--one is button and the other is int-->
+        </div>
+        <div class="col-md-4">
+          <!--one is button and the other is int-->
+          <button class="btn btn-outline-primary" style="font-size: 12px;"  type="submit">40 upvote</button>
+          <button class="btn btn-outline-danger" style="font-size: 12px;" type="submit">20 downvote</button>
+             
+        </div>
+      </div>
+
+    </div>
+    {%endfor%}
     
 {%endblock%}
 </div>
