@@ -30,84 +30,42 @@
 
 <!--Individual duplicate ratings-->
 {%block indivRating%}
-    <div class="border p-3 mt-3" style="background-color:#9ea4e0;">
-              
-      <div class="row pt-2 mb-2">
-        <div class="col-md-6">
-          <div style="color: white;display:inline;font-weight:bold;">Dereje Chinasho</div> <b style="color: #DCE027;">(gold)</b>  
-          <br> <small>3/6/2022</small> <!--date needs to be small in size-->
-        </div>
-        
-        <div class="col-md-6">
-          <b style="color: #333B84;">Rating: </b>individual rating goes here
-        </div>
-      </div>
-
-      some bla bla bla content here
-      <!--bottom of individual rating. Consists upvote and downvote-->
-      <div class="row pt-3">
-        <div class="col-md-4">
-          
-        </div>
-        <div class="col-md-4">
-          <!--one is button and the other is int-->
-        </div>
-        <div class="col-md-4">
-          <!--one is button and the other is int-->
-          <button class="btn btn-outline-primary" style="font-size: 12px;"  type="submit">40 upvote</button>
-          <button class="btn btn-outline-danger" style="font-size: 12px;" type="submit">20 downvote</button>
-             
-        </div>
-      </div>
-
-    </div>
-
-
-    
-
+  
     <!--individual rating 2-->
 
-    <div class="border p-3 mt-3 mb-2" style="background-color:#9ea4e0;">
-              
-      <div class="row pt-2 mb-2">
-        <div class="col-md-6">
-          <div style="color: white;display:inline;font-weight:bold;">First Last</div> <b style="color: #E5E4E2;">(platinium)</b>  <br> <small>3/6/2022</small> <!--date needs to be small in size-->
-        </div>
-        
-        <div class="col-md-6">
-          <b style="color: #333B84;">Rating: </b>individual rating goes here
-        </div>
-      </div>
-
-      some bla bla bla content here
-      <!--bottom of individual rating. Consists upvote and downvote-->
-      <div class="row pt-3">
-        <div class="col-md-4">
-          
-        </div>
-        <div class="col-md-4">
-          <!--one is button and the other is int-->
-        </div>
-        <div class="col-md-4">
-          <!--one is button and the other is int-->
-          <button class="btn btn-outline-primary" style="font-size: 12px;"  type="submit">40 upvote</button>
-          <button class="btn btn-outline-danger" style="font-size: 12px;" type="submit">20 downvote</button>
-             
-        </div>
-      </div>
-
-    </div>
-
     {%for post in posts%}
-    <div class="border p-3 mt-3 mb-2" style="background-color:#9ea4e0;">
+    <div class="border p-3 mt-3 mb-2 shadow" style="background-color:#9ea4e0;">
               
       <div class="row pt-2 mb-2">
         <div class="col-md-6">
-          <div style="color: white;display:inline;font-weight:bold;">First Last</div> <b style="color: #E5E4E2;">(badge)</b>  <br> <small>{{post.date_created}}</small> <!--date needs to be small in size-->
+          <div style="color: white;display:inline;font-weight:bold;">{{post.firstName}} {{post.lastName}} 
+            {%if post.verified%}
+            <i class="fa-solid fa-circle-check"></i>
+            {%endif%}
+           </div> <b style="color: #E5E4E2;">(badge)</b>  <br> <small>{{post.date_created}}</small> <!--date needs to be small in size-->
         </div>
         
         <div class="col-md-6">
-          <b style="color: #333B84;">Rating: </b>individual rating goes here
+          <!--if else for number of stars goes here-->
+          <b style="color: #333B84;">Rating: </b> 
+          
+          <!--star ratings-->
+          {%if post.rate_stars == 1%}
+          <i class="fa-solid fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> 
+          
+          {%elif post.rate_stars == 2%}
+          <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> 
+          {%elif post.rate_stars == 3%}
+          <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-regular fa-star"></i> <i class="fa-regular fa-star"></i> 
+          {%elif post.rate_stars == 4%}
+          <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-regular fa-star"></i> 
+          {%elif post.rate_stars == 5%}
+          <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> 
+          
+          {%endif%}
+          
+          {{post.rate_stars}}/5
+
         </div>
       </div>
 
@@ -122,8 +80,8 @@
         </div>
         <div class="col-md-4">
           <!--one is button and the other is int-->
-          <button class="btn btn-outline-primary" style="font-size: 12px;"  type="submit">40 upvote</button>
-          <button class="btn btn-outline-danger" style="font-size: 12px;" type="submit">20 downvote</button>
+          <button class="btn btn-outline-primary" style="font-size: 12px;"  type="submit">{{post.upvoteCount}} upvote</button>
+          <button class="btn btn-outline-danger" style="font-size: 12px;" type="submit">{{post.downvoteCount}} downvote</button>
              
         </div>
       </div>

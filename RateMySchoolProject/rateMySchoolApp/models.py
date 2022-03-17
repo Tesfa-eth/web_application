@@ -1,7 +1,8 @@
 from ast import mod
 from enum import auto
 from django.db import models
-from django.utils import timezone # get time zone
+from django.utils import timezone
+from sqlalchemy import null # get time zone
 # Create your models here.
 # After adding the models
 # python manage.py makemigrations     : applys the model changes
@@ -10,14 +11,19 @@ from django.utils import timezone # get time zone
 # username = Admin, password = Muler**********
 class Post(models.Model):
     postcontent = models.CharField(max_length=200)
+    firstName = models.CharField(default=null, max_length=20)
+    lastName = models.CharField(default=null, max_length=20)
     # changed the the zone in settings.py from UTC to EST
-    date_created = models.DateTimeField(default=timezone.now())
+    date_created = models.DateTimeField(auto_now_add=True)
     # user_id = models.IntegerField()
     # postNum = models.IntegerField()
-    # upvoteCount = models.IntegerField()
-    # downvoteCount = models.IntegerField()
+    upvoteCount = models.IntegerField(default=0)
+    downvoteCount = models.IntegerField(default=0)
     # ratedBodyID = models.IntegerField()
-    # rate_stars = models.IntegerField()
+    rate_stars = models.IntegerField(default=0)
+    verified = models.BooleanField(default=False)
+
+    # until username is created
 
     def __str__(self):
-        return self.postcontent# what it shows us on the admin panel.
+        return self.firstName + ',' +  self.postcontent # what it shows us on the admin panel.
