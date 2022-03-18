@@ -6,26 +6,28 @@
 
 {%block search%}
 <div>
-    <form class="d-flex">
-      <input class="form-control me-2" id="uni_search" type="search" placeholder="Search" aria-label="Search">
+    <form class="d-flex" method="get">
+      {% csrf_token %}
+      <input action="{% url 'collegeRating' %}"  name='q' class="form-control me-2" id="uni_search" type="search" placeholder="Search the university here" aria-label="Search">
       <button class="btn btn-outline-primary" type="submit">Search</button>
     </form>
 </div>
 
-<script>
-  $(function () {
-      var availableTags = [
-      {% for uni in universities %}
-          "{{uni.name}}",
-      {% endfor %}
-];
-  $("#uni_search").autocomplete({
-      source: availableTags
-  });
-} );
+  <script>
+    $(function () {
+        var availableTags = [
+        {% for uni in universities %}
+            "{{uni.name}}",
+        {% endfor %}
+  ];
+    $("#uni_search").autocomplete({
+        source: availableTags
+    });
+  } );
 
 
-</script>
+  </script>
+  
 {%endblock%}
 
 
@@ -33,8 +35,12 @@
 <div class="container">
   <div class="row pt-3">
     <div class="col-md-6">
-      <div style="color: #333B84; font-weight: bold;">Hawassa University</div>
-      <small style="text-align:center;">Hawassa University (HU) (Amharic: ሀዋሳ ዩኒቨርሲቲ) is a residential national university in Hawassa, Sidama Region, Ethiopia. It is approximately 278 kilometres (173 mi) south of Addis Ababa, Ethiopia. The Ministry Science and Higher Education (Ethiopia) admits qualified students to Hawassa University based on their score on the Ethiopian Higher Education Entrance Examination (EHEEE)</small>
+      <h3 style="color: #333B84; font-weight: bold;">
+      
+      {{queryUNI}}
+      
+      </h3>
+      <small style="text-align:center;">{{wiki_summary}}</small>
     </div>
     <div class="col-md-6">
       100% ratings
