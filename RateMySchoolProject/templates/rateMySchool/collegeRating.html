@@ -7,10 +7,25 @@
 {%block search%}
 <div>
     <form class="d-flex">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <input class="form-control me-2" id="uni_search" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-primary" type="submit">Search</button>
     </form>
 </div>
+
+<script>
+  $(function () {
+      var availableTags = [
+      {% for uni in universities %}
+          "{{uni.name}}",
+      {% endfor %}
+];
+  $("#uni_search").autocomplete({
+      source: availableTags
+  });
+} );
+
+
+</script>
 {%endblock%}
 
 
