@@ -8,7 +8,7 @@
 <div>
     <form class="d-flex" method="get">
       {% csrf_token %}
-      <input action="{% url 'collegeRating' %}"  name='q' class="form-control me-2" id="uni_search" type="search" placeholder="Search the university here" aria-label="Search">
+      <input action="{% url 'collegeRating' %}"  name='collegeQuery' class="form-control me-2" id="uni_search" type="search" placeholder="Search the university here" aria-label="Search">
       <button class="btn btn-outline-primary" type="submit">Search</button>
     </form>
 </div>
@@ -40,8 +40,23 @@
       {{queryUNI}}
       
       </h3>
-      <small style="text-align:center;">{{wiki_summary}}</small>
+      {%if wiki_summary%}
+      <div class="half-content" id="half" style="text-align:justify;">{{wiki_summary|safe|linebreaks|truncatewords:20}}
+      <a id="btn" href="javascript:void();" class="show-hide-btn">Read more</a>
+      </div>
+      <div class="half-content" id="full" style="text-align:justify;display: none;">{{wiki_summary|safe|linebreaks}}
+      <a id="btn" href="javascript:void();" class="show-hide-btn">Read less</a>
+      </div> 
+      {%endif%}
+      
     </div>
+    <script>
+      $(".show-hide-btn").click(function() {
+        $("#half").toggle();
+        $("#full").toggle();
+      })
+    </script>
+    
     <div class="col-md-6">
       100% ratings
     </div>

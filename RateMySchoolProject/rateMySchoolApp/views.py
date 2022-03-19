@@ -1,4 +1,5 @@
 import imp
+from unicodedata import name
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Post, Universities
@@ -23,19 +24,24 @@ def college_rating(request):
     posts = Post.objects.all()
     univeristies = Universities.objects.all()
 
-    if 'q' in request.GET:
-        q = request.GET['q']
-        data = Universities.objects.filter(name__icontains=q)
-        data = data[0]
+    if 'collegeQuery' in request.GET:
+        q = request.GET['collegeQuery']
+        crude_data = Universities.objects.filter(name__icontains=q)
+        query_post = Post.objects.filter(ratedBody=crude_data[0])
+        #print(crude_data[0])
+        #print(query_post)
+        data = crude_data[0]
         summary = get_summary(data)
     else:
         data = ''
         summary = ''
+        query_post = ''
     
     context = {
-        'posts': posts,
+        'posts': query_post,
         'universities' : univeristies,
         'queryUNI' : data,
+        'crudeQueryResult': data,
         'wiki_summary': summary
     }
     return render(request, 'rateMySchool/collegeRating.html', context)
