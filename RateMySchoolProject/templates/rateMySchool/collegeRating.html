@@ -5,6 +5,7 @@
 {%endblock%}
 
 {%block search%}
+
 <div>
     <form class="d-flex" method="get">
       {% csrf_token %}
@@ -41,7 +42,7 @@
       
       </h3>
       {%if wiki_summary%}
-      <div class="half-content" id="half" style="text-align:justify;">{{wiki_summary|safe|linebreaks|truncatewords:20}}
+      <div class="half-content" id="half" style="text-align:justify;">{{wiki_summary|safe|linebreaks|truncatewords:60}}
       <a id="btn" href="javascript:void();" class="show-hide-btn">Read more</a>
       </div>
       <div class="half-content" id="full" style="text-align:justify;display: none;">{{wiki_summary|safe|linebreaks}}
@@ -58,7 +59,7 @@
     </script>
     
     <div class="col-md-6">
-      100% ratings
+      {%include 'partials/chart.html'%}
     </div>
   </div>
 </div>

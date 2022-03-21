@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rateMySchoolApp.apps.ratemyschoolappConfig' # might cause some issue
+    'rateMySchoolApp.apps.ratemyschoolappConfig', # might cause some issue
+    'chartjs'
 ]
 
 MIDDLEWARE = [
