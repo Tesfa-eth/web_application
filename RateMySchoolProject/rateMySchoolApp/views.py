@@ -19,11 +19,32 @@ def get_summary(name):
     else:
         return 'Wiki summary not found'
         
+def matchRatings(data):
+    matchedData = []
+    lable = []
+    if 5 in data:
+        lable.append("5-star")
+        matchedData.append(data.count(5))
+    if 4 in data:
+        lable.append("4-star")
+        matchedData.append(data.count(4))
+    if 3 in data:
+        lable.append("3-star")
+        matchedData.append(data.count(3))
+    if 2 in data:
+        lable.append("2-star")
+        matchedData.append(data.count(2))
+    if 1 in data:
+        lable.append("1-star")
+        matchedData.append(data.count(1))
+    
+    return lable, matchedData
 
 def college_rating(request):
     posts = Post.objects.all()
     univeristies = Universities.objects.all()
 
+    graph_data = []
     if 'collegeQuery' in request.GET:
         q = request.GET['collegeQuery']
         crude_data = Universities.objects.filter(name__icontains=q)
@@ -32,16 +53,25 @@ def college_rating(request):
         #print(query_post)
         data = crude_data[0]
         summary = get_summary(data)
+        # chart
+        queryPost = Post.objects.filter(ratedBody=crude_data[0]).order_by('-rate_stars')
+        for post in queryPost:
+             graph_data.append(post.rate_stars)
+        
+        lable, graph_data = matchRatings(graph_data)
+
     else:
         data = ''
         summary = ''
         query_post = ''
-    
+    print(graph_data, lable)
     context = {
         'posts': query_post,
         'universities' : univeristies,
         'queryUNI' : data,
         'crudeQueryResult': data,
-        'wiki_summary': summary
+        'wiki_summary': summary,
+        'graph_data': graph_data,
+        'lable': lable
     }
     return render(request, 'rateMySchool/collegeRating.html', context)
