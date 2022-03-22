@@ -46,6 +46,6 @@ http://127.0.0.1:8000
 ```
 
 # Walkthrough
-Once you do all this and navigate to ```http://127.0.0.1:8000```. Go to ```College Ratings```. There, you will be able to search universities. The search bar will bring you recommendations as you start to type in. If you don't know what to search for just type ```uni```. Then you can search for universities and see their ratings.
+Once you do all this and navigate to ```http://127.0.0.1:8000```. Go to ```College Ratings```. There, you will be able to search universities. The search bar will bring you recommendations as you start to type in. If you don't know what to search for just type ```uni```. Then you can search for universities and see their over all ratings in an interactive graph as well as see the average ratings and individual ratings and written feedbacks.
 <img width="960" alt="chrome_CPlG4CFwlK" src="https://user-images.githubusercontent.com/62855279/159392394-7bee3f8a-e18c-40c0-a459-0f454761980f.png">
 
