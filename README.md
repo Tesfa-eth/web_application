@@ -7,6 +7,7 @@ Suplements:
 
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white) 
 
+# Explore
 ## Set up
 Clone the repository
 
@@ -30,3 +31,9 @@ Then install the dependencies:
 ```
 
 Note the ```(env)``` in front of the prompt. This indicates that this terminal session operates in a virtual environment set up by ```virtualenv2```.
+
+Once ```pip``` has finished downloading the dependencies:
+
+```
+(env)$ python manage.py runserver
+```
