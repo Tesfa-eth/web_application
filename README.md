@@ -15,7 +15,7 @@ Clone the repository
 $ git clone https://github.com/Tesfa-eth/web_application.git
 ```
 ```
-$ cd RateMySchoolProject
+$ cd web_application
 ```
 
 Create a virtual environment to install dependencies in and activate it:
