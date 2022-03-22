@@ -34,7 +34,7 @@ Note the ```(env)``` in front of the prompt. This indicates that this terminal s
 
 Once ```pip``` has finished downloading the dependencies:
 ```
-$ cd RateMySchoolProject
+(env)$ cd RateMySchoolProject
 ```
 
 ```
