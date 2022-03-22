@@ -14,5 +14,19 @@ Clone the repository
 $ git clone https://github.com/Tesfa-eth/web_application.git
 ```
 ```
-$ cd sample-django-app
+$ cd RateMySchoolProject
 ```
+
+Create a virtual environment to install dependencies in and activate it:
+```
+$ virtualenv2 --no-site-packages env
+$ source env/bin/activate
+```
+
+Then install the dependencies:
+
+```
+(env)$ pip install -r requirements.txt
+```
+
+Note the ```(env)``` in front of the prompt. This indicates that this terminal session operates in a virtual environment set up by ```virtualenv2```.
