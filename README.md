@@ -20,7 +20,7 @@ $ cd web_application
 
 Create a virtual environment to install dependencies in and activate it:
 ```
-$ virtualenv2 --no-site-packages env
+$ virtualenv env
 $ source env/bin/activate
 ```
 
