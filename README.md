@@ -11,8 +11,8 @@ Suplements:
 Clone the repository
 
 ```
-git clone https://github.com/Tesfa-eth/web_application.git
+$ git clone https://github.com/Tesfa-eth/web_application.git
 ```
 ```
-cd sample-django-app
+$ cd sample-django-app
 ```
