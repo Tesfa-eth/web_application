@@ -4,14 +4,15 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Post, Universities
 import wikipediaapi
-# from .wikiAPI import get_summary # import not working
+# from .wikiAPI import get_summary # Todo: import needs to be fixed
 
 # Create your views here.
-
 def index(request):
+    """render the main page"""
     return render(request,'rateMySchool/index.html')
 
 def get_summary(name):
+    """takes the title of university and returns a wiki summery"""
     wiki_wiki = wikipediaapi.Wikipedia('en')
     page_py = wiki_wiki.page(name)
     if page_py.exists():
@@ -20,42 +21,41 @@ def get_summary(name):
         return 'Wiki summary not found'
         
 def matchRatings(data):
+    """matches ratings data to lables"""
     matchedData = []
     lable = []
-    #if 5 in data:
     lable.append("5-star")
     matchedData.append(data.count(5))
-    #if 4 in data:
     lable.append("4-star")
     matchedData.append(data.count(4))
-    #if 3 in data:
     lable.append("3-star")
     matchedData.append(data.count(3))
-    #if 2 in data:
     lable.append("2-star")
     matchedData.append(data.count(2))
-    #if 1 in data:
     lable.append("1-star")
     matchedData.append(data.count(1))
     
     return lable, matchedData
+
 def Average(lst):
+    """calculate average rating"""
     return sum(lst) / len(lst)
 
 def college_rating(request):
-    posts = Post.objects.all()
+    """renders college rating page"""
+
+    # get university list for search recommendation
     univeristies = Universities.objects.all()
 
     graph_data = []
     lable = []
-    
-    
     if 'collegeQuery' in request.GET:
         q = request.GET['collegeQuery']
         crude_data = Universities.objects.filter(name__icontains=q)
         query_post = Post.objects.filter(ratedBody=crude_data[0])
-        #print(crude_data[0])
-        #print(query_post)
+        # debug
+        # print(crude_data[0])
+        # print(query_post)
         data = crude_data[0]
         summary = get_summary(data)
         # chart

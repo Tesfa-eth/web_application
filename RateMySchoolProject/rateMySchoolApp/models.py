@@ -23,7 +23,7 @@ class Post(models.Model):
     postcontent = models.CharField(max_length=200)
     firstName = models.CharField(default=null, max_length=20)
     lastName = models.CharField(default=null, max_length=20)
-    # changed the the zone in settings.py from UTC to EST
+    # Reminder: changed the the zone in settings.py from UTC to EST
     date_created = models.DateTimeField(auto_now_add=True)
     # user_id = models.IntegerField()
     # postNum = models.IntegerField()
@@ -34,7 +34,6 @@ class Post(models.Model):
     verified = models.BooleanField(default=False)
 
     # until username is created
-
     ratedBody = models.ForeignKey(Universities, on_delete=models.CASCADE)
 
     

@@ -1,28 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--Chart js-->
-    <title>Ratings Graph</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
-  </head>
-  {%if graph_data%}
-  <h4>Overall ratings ({{average_rating}})</h4>
-  <!--Drop down-->
-  <!--dropdown end-->
-  <canvas id="myChart" width="200" height="150"></canvas>
-  {%elif queryUNI != ''%}
-  <p>Sorry :( This university doesn't have any ratings yet. Please log-in /register to rate.</p>
-  {%endif%}
-
-    <script>
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'bar',
+<script>
+    const ctx = document.getElementById('myCharts').getContext('2d');
+    const graph = {
+        type: 'pie',
         data: {
             labels: {{lable|safe}}, //['5-stars', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
             datasets: [{
@@ -62,11 +41,21 @@
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    
                 }
             }
-        }
-    });
+        }}
+    const myChart = new Chart(ctx, graph);
+    
+    const coffeeSales = document.getElementById("coffeeSales");
+    coffeeSales.addEventListener('change', salesTracker);
+    function salesTracker(){
+        console.log(coffeeSales.value);
+        console.log(myChart.id);
+        myChart.config.type = coffeeSales.value;
+        myChart.update();
+        
+    }
     </script>
-
-</html>
+    

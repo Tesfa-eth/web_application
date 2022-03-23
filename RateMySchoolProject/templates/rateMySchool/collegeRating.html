@@ -13,21 +13,6 @@
       <button class="btn btn-outline-primary" type="submit">Search</button>
     </form>
 </div>
-
-  <script>
-    $(function () {
-        var availableTags = [
-        {% for uni in universities %}
-            "{{uni.name}}",
-        {% endfor %}
-  ];
-    $("#uni_search").autocomplete({
-        source: availableTags
-    });
-  } );
-
-
-  </script>
   
 {%endblock%}
 
@@ -51,18 +36,25 @@
       {%else%}
       <div class="half-content" id="half" style="text-align:justify;">{{wiki_summary|safe|linebreaks}} </div>
       {%endif%}
-      
     </div>
-    <script>
-      $(".show-hide-btn").click(function() {
-        $("#half").toggle();
-        $("#full").toggle();
-      })
-    </script>
     
     <div class="col-md-6">
-      {%include 'partials/chart.html'%}
-      
+      {%if graph_data%}
+        <h4>Overall ratings ({{average_rating}})</h4>
+        <canvas id="myCharts" width="200" height="150"></canvas>
+        <div class="selectBox">
+          <select id="coffeeSales">
+            <option value="bar">Bar</option>
+            <option value="pie">Pie</option>
+            <option value="doughnut">Doghnut</option>
+            <option value='radar'>Radar</option>
+          </select>
+          {%include 'rateMySchool/chartjs.html'%} <!--Javascript Code for the chart-->
+        </div> 
+      {%elif queryUNI != ''%}
+        <p>Sorry :( This university doesn't have any ratings yet. Please log-in /register to rate.</p>
+      {%endif%}
+     
     </div>
   </div>
 </div>

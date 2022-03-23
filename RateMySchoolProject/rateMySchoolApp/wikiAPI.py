@@ -6,9 +6,10 @@ uses wikipedia apa from mediaWiki to extract university information from wikiped
 import wikipediaapi
 
 def get_summary(name):
+    """takes the title of university and returns a wiki summery"""
     wiki_wiki = wikipediaapi.Wikipedia('en')
     page_py = wiki_wiki.page(name)
-    if wiki_wiki.page('NonExistingPageWithStrangeName'):
-        return 'Wiki summary not found'
-    else:
+    if page_py.exists():
         return page_py.summary
+    else:
+        return 'Wiki summary not found'
