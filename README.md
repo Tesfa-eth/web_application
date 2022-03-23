@@ -1,6 +1,14 @@
 # Rate my school web application ([Django](https://www.djangoproject.com/))
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white) ![Chart.js](https://img.shields.io/badge/chart.js-F5788D.svg?style=for-the-badge&logo=chart.js&logoColor=white) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
+Directory inforamtion for code review:
+```web_application/RateMySchoolProject/``` - contains the src code for the web application.
+
+Inside this directory: 
+
+```rateMySchoolApp/``` contains the code to render the web pages ```views.py```, database models ```models.py```. 
+You can also take a look at ```templates/``` to find html templates. Some of them contain a js code.
+
 Rate my school provides ratings of universities and professors in developing countries. Users can search for colleges and professors and see their ratings. The overall ratings will be graphically and interactively displayed. Written evaluations will also be displayed in a nice card view. Users can post written feedback and these feedbacks can be upvoted and downvoted by other users. In order to rate or vote for/against rates, users have to register and log in. Moreover, users will be given badges like gold, silver, and platinum depending on their participation and their credibility.This will be measured based on how many times they rated and how many upvotes/downvotes they get. And there will be a verification feature where notable will be verified in which case they will have a special check mark on their name. The web app will also use a profanity check library or a machine learning model to check for abusive words before a user posts anything. Other users can also report in which case they can be blocked based on the approval of the adminstrator.
 <hr />
 Suplements:
@@ -46,3 +54,6 @@ http://127.0.0.1:8000
 ```
 
 # Walkthrough
+Once you do all this and navigate to ```http://127.0.0.1:8000```. Go to ```College Ratings```. There, you will be able to search universities. The search bar will bring you recommendations as you start to type in. If you don't know what to search for just type ```uni```. Then you can search for universities and see their over all ratings in an interactive graph as well as see the average ratings and individual ratings and written feedbacks.
+<img width="960" alt="chrome_CPlG4CFwlK" src="https://user-images.githubusercontent.com/62855279/159392394-7bee3f8a-e18c-40c0-a459-0f454761980f.png">
+
