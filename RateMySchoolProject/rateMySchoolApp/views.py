@@ -44,35 +44,35 @@ def Average(lst):
 def college_rating(request):
     """renders college rating page"""
 
+    # variables
+    data = ''
+    summary = ''
+    query_post = ''
+    average_rating = ''
+
     # get university list for search recommendation
     univeristies = Universities.objects.all()
-
     graph_data = []
     lable = []
     if 'collegeQuery' in request.GET:
         q = request.GET['collegeQuery']
         crude_data = Universities.objects.filter(name__icontains=q)
-        query_post = Post.objects.filter(ratedBody=crude_data[0])
-        # debug
-        # print(crude_data[0])
-        # print(query_post)
-        data = crude_data[0]
-        summary = get_summary(data)
-        # chart
-        queryPost = Post.objects.filter(ratedBody=crude_data[0]).order_by('-rate_stars')
-        for post in queryPost:
-             graph_data.append(post.rate_stars)
+        if len(crude_data) != 0: # if the search succeeds
+            query_post = Post.objects.filter(ratedBody=crude_data[0])
+            # debug
+            # print(crude_data[0])
+            # print(query_post, len(query_post), "query post")
+            data = crude_data[0]
+            summary = get_summary(data)
+            # chart
+            queryPost = Post.objects.filter(ratedBody=crude_data[0]).order_by('-rate_stars')
+            for post in queryPost:
+                graph_data.append(post.rate_stars)
+            
+            average_rating = Average(graph_data)
+            lable, graph_data = matchRatings(graph_data)
         
-        average_rating = Average(graph_data)
-        lable, graph_data = matchRatings(graph_data)
-        
-
-    else:
-        data = ''
-        summary = ''
-        query_post = ''
-        average_rating = ''
-    print(graph_data, lable)
+    #print(graph_data, lable)
     context = {
         'posts': query_post,
         'universities' : univeristies,
