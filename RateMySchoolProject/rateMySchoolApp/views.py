@@ -39,7 +39,10 @@ def matchRatings(data):
 
 def Average(lst):
     """calculate average rating"""
-    return sum(lst) / len(lst)
+    if len(lst) > 0:
+        return sum(lst) / len(lst)
+    else:
+        return 0
 
 def college_rating(request):
     """renders college rating page"""
