@@ -1,3 +1,4 @@
 env
 .vscode
 pythonNote.txt
+*.sqlite3
