@@ -1,1 +1,1 @@
-web gunicorn RateMySchoolProject.wsgi:application --log-file -
+web gunicorn RateMySchoolProject.wsgi
